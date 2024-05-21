@@ -9,9 +9,9 @@ const fetchConfig = (token)=>{
         }
      }
 }
-export  const fetchData =async (token)=>{
+export  const fetchData =async (token, status)=>{
     let config = fetchConfig(token);
-    const tasks = await axios.get(ALLTASKS,config);
+    const tasks = await axios.get(`${ALLTASKS}?status=${status}`,config);
     return tasks;
     
 };

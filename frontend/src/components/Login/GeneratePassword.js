@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { IoCloseOutline } from "react-icons/io5";
-import { checkBoxes } from "../utils/constants"
-import usePasswordGenerator from '../hooks/usePasswordGenerator';
+import { checkBoxes } from "../../utils/constants"
+import usePasswordGenerator from '../../hooks/usePasswordGenerator';
 import PasswordStrengthIndicator from './PasswordStrengthIndicator';
 
 const GeneratePassword = ({ setgeneratePassword }) => {

@@ -48,7 +48,7 @@ const CreateTask = ({ setCreateTask, setfetchAllTasks }) => {
                 <input ref={title} type="text" className='w-4/5 p-3 mx-7 my-5 rounded-md' placeholder='Enter Title' />
                 <textarea ref={content} className='w-4/5 h-auto p-3 mx-7 my-5 rounded-md' placeholder='Enter Description '></textarea>
                 <select ref={status} name="status" placeholder="Status" className='w-4/5 p-3 mx-7 my-5 rounded-md'>
-                    <option value="ToDO" >To Do</option>
+                    <option value="ToDo" >To Do</option>
                     <option value="InProgress">In Progress</option>
                     <option value="Done" >Done</option>
                 </select>

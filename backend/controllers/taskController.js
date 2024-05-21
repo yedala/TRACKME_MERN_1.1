@@ -2,8 +2,18 @@ const Task = require('../models/taskModel');
 const asyncHandler = require("express-async-handler");
 
 const getTasks = asyncHandler(async(req,res)=>{
-    const tasks = await Task.find({user:req.user._id});
-    res.json(tasks);
+    const status = req.query.status;
+    console.log(status)
+    if(status == 'ALL'){
+        const tasks = await Task.find({user:req.user._id});
+        res.json(tasks);
+    }
+    else{
+        const tasks = await Task.find({user:req.user._id,status:status});
+        console.log(tasks)
+        res.json(tasks);
+    }
+   
 });
 
 const createTask = asyncHandler(async (req,res)=>{

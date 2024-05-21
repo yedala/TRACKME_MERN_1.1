@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react'
-import validation from '../utils/validation';
+import validation from '../../utils/validation';
 import { useDispatch } from 'react-redux';
-import { addUserData, updateLoader } from '../utils/userSlice';
+import { addUserData, updateLoader } from '../../utils/userSlice';
 import {useNavigate} from "react-router-dom"
-import bkgImg from '../assets/bkgimg.jpeg'
+import bkgImg from '../../assets/bkgimg.jpeg'
 import GeneratePassword from './GeneratePassword';
 import MobileSignIn from './MobileSignIn';
-import { LOGIN,SIGNUP } from '../utils/Api';
+import { LOGIN,SIGNUP } from '../../utils/Api';
 import axios from "axios"
 
 const Login = () => {
