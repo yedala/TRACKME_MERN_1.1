@@ -1,25 +1,42 @@
 import React, { useRef } from 'react'
 import { useSelector } from 'react-redux';
 import { createTask } from '../../services/apiTask';
+import { useDispatch } from 'react-redux';
+import { updateLoader } from '../../utils/userSlice';
 
-const CreateTask = ({ setCreateTask , setfetchAllTasks}) => {
+
+const CreateTask = ({ setCreateTask, setfetchAllTasks }) => {
     const title = useRef();
     const content = useRef();
     const status = useRef();
     const token = useSelector(state => state?.user?.userData?.token);
+    const dispatch = useDispatch();
 
-    const handleCancel =()=>{
+
+    const handleCancel = () => {
         setCreateTask(false);
     }
-    const HandleSave = ()=>{
+    const HandleSave = async () => {
+        dispatch(updateLoader(true));
         const payload = {
             title: title.current.value,
             content: content.current.value,
             status: status.current.value,
         }
-        const savedTask = createTask(token,payload);
-        setCreateTask(false);
-        setfetchAllTasks(true);
+        try {
+            const savedTask = await createTask(token, payload);
+            if (savedTask){
+                setfetchAllTasks(prev => prev + 1);
+                setCreateTask(false);
+            }
+            dispatch(updateLoader(false));
+        }
+        catch (err) {
+            /// need to add a toaster
+            setCreateTask(false);
+            dispatch(updateLoader(false));
+
+        }
 
     }
     return (
@@ -27,10 +44,10 @@ const CreateTask = ({ setCreateTask , setfetchAllTasks}) => {
             <h1 className=' text-3xl flex justify-center p-3'>Create a New Task</h1>
 
             <div className='p-9 flex flex-col justify-center items-center'>
-                
+
                 <input ref={title} type="text" className='w-4/5 p-3 mx-7 my-5 rounded-md' placeholder='Enter Title' />
                 <textarea ref={content} className='w-4/5 h-auto p-3 mx-7 my-5 rounded-md' placeholder='Enter Description '></textarea>
-                <select ref={status} name="status" placeholder="Status"className='w-4/5 p-3 mx-7 my-5 rounded-md'>
+                <select ref={status} name="status" placeholder="Status" className='w-4/5 p-3 mx-7 my-5 rounded-md'>
                     <option value="ToDO" >To Do</option>
                     <option value="InProgress">In Progress</option>
                     <option value="Done" >Done</option>
@@ -40,7 +57,7 @@ const CreateTask = ({ setCreateTask , setfetchAllTasks}) => {
                     <button className='p-2 font-bold rounded-lg px-4 my-10 bg-green-400' onClick={HandleSave}>Save</button>
                 </div>
             </div>
-            
+
         </div>
     )
 }

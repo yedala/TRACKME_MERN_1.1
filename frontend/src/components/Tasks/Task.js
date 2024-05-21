@@ -26,10 +26,11 @@ const Task = ({ task, index, token, setfetchAllTasks }) => {
   }
 
 
-  const DeleteTask = () => {
+  const DeleteTask = async() => {
     console.log(token)
-    const deleted = deleteTask(token,task._id);
-    setfetchAllTasks(true);
+    const deleted =await deleteTask(token,task._id);
+    if(deleted)
+    setfetchAllTasks(prev =>prev+1);
   }
   const EditTask = ()=>{
     const data={
@@ -38,14 +39,25 @@ const Task = ({ task, index, token, setfetchAllTasks }) => {
     };
     navigate(`/editTask/${task._id}`,{state: data});
   }
+  const getStatusClass = (status) => {
+    switch (status) {
+      case 'InProgress':
+        return 'bg-yellow-300';
+      case 'Done':
+        return 'bg-green-300';
+      default:
+        return 'bg-blue-300';
+    }
+  };
+  
   return (
     <div className='flex justify-between shadow-lg bg-gray-100 px-7 py-6 mx-5 my-2'>
       <div className='px-2'> {index}.</div>
       <div className='w-1/6'>{task.title}</div>
       <div className='w-3/6 h-auto overflow-auto '>{task.content}</div>
       <div className='w-1/6'>{date}</div>
-      <div className=' w-1/6 flex justify-center items-center'>
-        <button className=' bg-blue-300 p-2 px-4 rounded-lg'>{task.status}</button>
+      <div className=' w-1/6 flex justify-between items-center'>
+        <button className={` w-24 px-2 p-2 truncate  rounded-lg ${getStatusClass(task.status)}` } title={task?.status} >{task.status}</button>
         <div className='mx-5 p-1 cursor-pointer relative'>
           <CiMenuKebab onClick={openMenu} />
           {menu && (

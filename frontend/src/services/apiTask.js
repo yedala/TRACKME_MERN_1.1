@@ -38,3 +38,8 @@ export const getTask = async(token,id)=>{
     return await axios.get(UPDATE_TASK + `${id}`, config)
 
 }
+
+export const updateTask = async(token,id,payload) =>{
+    let config = fetchConfig(token);
+    return await axios.put(UPDATE_TASK+`${id}`,payload,config)
+}
