@@ -29,8 +29,8 @@ const TodoList = () => {
 
   return (
     <>
-      {createTask && <CreateTask setCreateTask={setCreateTask} setfetchAllTasks={setfetchAllTasks} />}
-      <div className='w-full '>
+      {createTask && <CreateTask className="" setCreateTask={setCreateTask} setfetchAllTasks={setfetchAllTasks} />}
+      {!createTask && <div className='w-full '>
         <div className='flex justify-between items-center   m-1'>
           <h2 className='mx-1 text-2xl'>My TodoList</h2>
           <button className=' bg-orange-300 p-2 my-3 rounded-md' onClick={CreateATask}>Create  New Task ➕</button>
@@ -43,7 +43,7 @@ const TodoList = () => {
           })}
         </div>
 
-      </div>
+      </div>}
     </>
   )
 }
