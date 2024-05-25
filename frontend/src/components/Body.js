@@ -1,12 +1,13 @@
 import React from 'react'
 import Login from './Login/Login'
-import {RouterProvider, Navigate,Route,Routes} from "react-router-dom"
+import { Navigate,Route,Routes} from "react-router-dom"
 import Home from './Home'
 import AccountSettings from './AccountSettings'
 import Header from './Header'
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from './Loader'
 import EditTask from './Tasks/EditTask'
+import ChatsConnect from './chats/ChatsConnect'
 
 const Body = () => {
  const isAuthenticated = useSelector(state => state?.user?.userData?.token);
@@ -19,6 +20,7 @@ const Body = () => {
      <Routes>
       <Route path="/"  element={isAuthenticated ? <Navigate to="/home"/> :<Login/>}></Route>
       <Route path="/home" element={isAuthenticated ? <Home/>: <Navigate to="/" />}></Route>
+      <Route path="/connect" element={isAuthenticated? <ChatsConnect/> : <Navigate to="/" />}></Route>
       <Route path="/account" element={<AccountSettings/>}></Route>
       <Route path="/editTask/:id" element={<EditTask/>}></Route>
      </Routes>

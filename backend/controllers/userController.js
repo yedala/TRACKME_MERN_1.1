@@ -48,5 +48,20 @@ const authUser = asyncHandler(async (req,res)=>{
         throw new Error("Invalid  password !")
     }
 
+});
+
+const allUsers = asyncHandler(async(req,res)=>{
+    const search = req.query.search ?
+    {
+        $or:[
+            {name:{$regex: req.query.search, $options:"i"}},
+            {name:{$regex: req.query.search, $options:"i"}},
+        ],
+    }:{};
+    const users = await User.find(
+        search
+    ).find({_id:{$ne:req.user._id}});
+    res.send(users);
 })
-module.exports = {registerUser,authUser}
+
+module.exports = {registerUser,authUser,allUsers}

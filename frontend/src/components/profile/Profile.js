@@ -19,6 +19,7 @@ const Profile = ({ setProfile }) => {
             <div className='flex justify-end' onClick={() => setProfile(false)} ><IoMdClose /></div>
             <div className='h-52 flex flex-col'>
                 <Link className='p-2 my-1' to="/home">Home</Link>
+                <Link className='p-2 my-1' to="/connect">Chats</Link>
                 <Link className='p-2 my-1' to="/account">Account</Link>
             </div>
             <div className='flex flex-col cursor-pointer'>
