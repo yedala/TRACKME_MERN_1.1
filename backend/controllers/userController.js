@@ -63,5 +63,15 @@ const allUsers = asyncHandler(async(req,res)=>{
     ).find({_id:{$ne:req.user._id}});
     res.send(users);
 })
+const fetchUser = asyncHandler(async(req,res)=>{
+    const userId = req.params.userId;
+    try{
+        const user = await User.find({_id:userId});
+        console.log(user);
+        res.json(user);
+    }catch(err){
+         res.status(404).send(err.message);
+    }
+})
 
-module.exports = {registerUser,authUser,allUsers}
+module.exports = {registerUser,authUser,allUsers,fetchUser}

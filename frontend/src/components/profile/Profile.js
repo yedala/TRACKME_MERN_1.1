@@ -18,12 +18,12 @@ const Profile = ({ setProfile }) => {
         <div>
             <div className='flex justify-end' onClick={() => setProfile(false)} ><IoMdClose /></div>
             <div className='h-52 flex flex-col'>
-                <Link className='p-2 my-1' to="/home">Home</Link>
-                <Link className='p-2 my-1' to="/connect">Chats</Link>
-                <Link className='p-2 my-1' to="/account">Account</Link>
+                <Link className='px-2  my-1' to="/home">Home</Link>
+                <Link className='px-2  my-1' to="/connect">Chats</Link>
             </div>
             <div className='flex flex-col cursor-pointer'>
-                <p className='p-2 my-1' onClick={LogOut}>Log Out</p>
+                <Link className='px-2  my-1' to="/account">Update Profile</Link>
+                <p className='px-2  my-1' onClick={LogOut}>Log Out</p>
             </div>
         </div>
     )

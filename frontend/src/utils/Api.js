@@ -2,6 +2,7 @@
 export const LOGIN = "/users/login";
 export const SIGNUP = "users/signup";
 export const ALL_USERS ="/users/all";
+export const FETCH_USER = "/users/"
 
 //for tasks
 export const ALLTASKS = "/tasks/all";

@@ -34,6 +34,13 @@ export const fetchChatName = (users,userId)=>{
     });
     return chatName;
 }
+export const fetchChatImage = (users,userId)=>{
+    let chatImage;
+    users?.map((u)=>{
+        if(u._id != userId)chatImage= u.pic;
+    });
+    return chatImage;
+}
 
 export const sendNewMessage = async(payload,token)=>{
     let config = fetchConfig(token);
