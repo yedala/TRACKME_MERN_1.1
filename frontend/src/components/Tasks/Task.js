@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Task = ({ task, index, token, setfetchAllTasks }) => {
-  console.log('task')
   const [date, setdate] = useState();
   const [menu, setMenu] = useState(false);
   const navigate = useNavigate();
@@ -27,7 +26,6 @@ const Task = ({ task, index, token, setfetchAllTasks }) => {
 
 
   const DeleteTask = async() => {
-    console.log(token)
     const deleted =await deleteTask(token,task._id);
     if(deleted)
     setfetchAllTasks(prev =>prev+1);

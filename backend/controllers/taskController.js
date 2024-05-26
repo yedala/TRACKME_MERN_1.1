@@ -3,14 +3,12 @@ const asyncHandler = require("express-async-handler");
 
 const getTasks = asyncHandler(async(req,res)=>{
     const status = req.query.status;
-    console.log(status)
     if(status == 'ALL'){
         const tasks = await Task.find({user:req.user._id});
         res.json(tasks);
     }
     else{
         const tasks = await Task.find({user:req.user._id,status:status});
-        console.log(tasks)
         res.json(tasks);
     }
    

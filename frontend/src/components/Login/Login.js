@@ -47,7 +47,6 @@ const Login = () => {
             dispatch(updateLoader(false));
            }
            catch(err){
-            console.log(err);
             dispatch(updateLoader(false));
 
            }
@@ -60,7 +59,6 @@ const Login = () => {
                 dispatch(updateLoader(false));
                }
                catch(err){
-                console.log(err);
                 dispatch(updateLoader(false));
                }
         }

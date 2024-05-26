@@ -6,7 +6,6 @@ import { fetchData } from '../../services/apiTask';
 
 
 const TodoList = () => {
-  console.log('todo')
   const [fetchAllTasks, setfetchAllTasks] = useState(0);
   const [createTask, setCreateTask] = useState(false);
   const token = useSelector(store => store?.user?.userData?.token);

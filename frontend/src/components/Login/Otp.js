@@ -15,7 +15,6 @@ const Otp = () => {
     }
     useEffect(()=>{
         inputRef.current[0].focus();
-        console.log(inputRef);
     },[]);
 
     const handleKeyDown= (e,index)=>{
