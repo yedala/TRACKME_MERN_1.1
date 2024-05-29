@@ -10,7 +10,7 @@ const TodoList = () => {
   const [createTask, setCreateTask] = useState(false);
   const token = useSelector(store => store?.user?.userData?.token);
   const [allTasks, setallTasks] = useState();
-  const [prevFilter,setPrevFilter] = useState('ALL');
+  const [prevFilter, setPrevFilter] = useState('ALL');
 
 
   useEffect(() => {
@@ -18,19 +18,30 @@ const TodoList = () => {
   }, [fetchAllTasks]);
 
   const CreateATask = () => {
-    setCreateTask(true);
+    try {
+      setCreateTask(true);
+
+    } catch (err) {
+      console.log('need a toaster')
+
+    }
   }
 
   const fetchAllTasksTable = async (filter) => {
-    setallTasks(await fetchData(token,filter));
+    try {
+      setallTasks(await fetchData(token, filter));
+
+    } catch (err) {
+      console.log('need a toaster')
+    }
   }
 
-  const handleFilter = (e)=>{
-    if(prevFilter != e.target.value){
+  const handleFilter = (e) => {
+    if (prevFilter != e.target.value) {
       setPrevFilter(e.target.value);
       fetchAllTasksTable(e.target.value);
     }
-    
+
   }
 
 
@@ -41,20 +52,20 @@ const TodoList = () => {
         <div className='flex justify-between items-center   m-1'>
           <h2 className='mx-1 text-2xl'>My TodoList</h2>
           <div>
-          <select className='p-2 bg-blue-100 m-2 rounded-md' onClick={(e)=>handleFilter(e)}>
-            <option value="ALL"  className='p-2 m-2 ' >ALL</option>
-            <option value="Done">Done</option>
-            <option value="ToDo">ToDo</option>
-            <option value="InProgress">InProgress</option>
-          </select>
-          <button className=' bg-orange-300 p-2 my-3 rounded-md' onClick={CreateATask}>Create  New Task ➕</button>
+            <select className='p-2 bg-blue-100 m-2 rounded-md' onClick={(e) => handleFilter(e)}>
+              <option value="ALL" className='p-2 m-2 ' >ALL</option>
+              <option value="Done">Done</option>
+              <option value="ToDo">ToDo</option>
+              <option value="InProgress">InProgress</option>
+            </select>
+            <button className=' bg-orange-300 p-2 my-3 rounded-md' onClick={CreateATask}>Create  New Task ➕</button>
           </div>
         </div>
-      
+
 
         <div>
-          {allTasks?.data?.map((task,index) => {
-            return <Task setfetchAllTasks={setfetchAllTasks} key={task._id} task={task} token={token} index={index+1}/>
+          {allTasks?.data?.map((task, index) => {
+            return <Task setfetchAllTasks={setfetchAllTasks} key={task._id} task={task} token={token} index={index + 1} />
           })}
         </div>
 

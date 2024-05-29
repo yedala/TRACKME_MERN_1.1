@@ -29,6 +29,9 @@ const userSchema = mongoose.Schema(
         mobileNumber:{
             type: Number,
             required: false
+        },
+        refreshToken:{
+            type: String,
         }
         
     },

@@ -8,6 +8,7 @@ import GeneratePassword from './GeneratePassword';
 import MobileSignIn from './MobileSignIn';
 import { LOGIN,SIGNUP } from '../../utils/Api';
 import axios from "axios"
+import { encryptPassword } from '../../services/apiUser';
 
 const Login = () => {
     const [isSignIn, setisSignIn] = useState(true);
@@ -31,18 +32,19 @@ const Login = () => {
     const handleMobile = ()=>{
         setMobileSignIn(!mobileSignIn);
     }
-    const isAuthenticated = (_id,name,email,token)=>{
-        dispatch(addUserData({_id:_id,name:name,email:email,token:token}));
+    const isAuthenticated = (_id,name,email,token,refreshToken)=>{
+        dispatch(addUserData({_id:_id,name:name,email:email,token:token,refreshToken:refreshToken}));
     }
     const handleSignIn = async ()=>{
         const err = validation(email.current.value, password.current.value);
+        let encyptedPassword = encryptPassword(password.current.value);
         setisErrmsg(err);
         if (err) return;
         dispatch(updateLoader(true));
         if(isSignIn){
            try{
-            const {data} = await axios.post(LOGIN,{email: email.current.value,password:password.current.value});
-            isAuthenticated(data._id,data.name,data.email,data.token);
+            const {data} = await axios.post(LOGIN,{email: email.current.value,password:encyptedPassword});
+            isAuthenticated(data._id,data.name,data.email,data.token,data.refreshToken);
             navigate('/home');
             dispatch(updateLoader(false));
            }
@@ -53,8 +55,8 @@ const Login = () => {
         }
         else{
             try{
-                const {data} = await axios.post(SIGNUP,{email: email.current.value,password:password.current.value,name: name.current.value,mobileNumber: mobileNumber.current.value});
-                isAuthenticated(data._id,data.name,data.email,data.token);
+                const {data} = await axios.post(SIGNUP,{email: email.current.value,password:encyptedPassword,name: name.current.value,mobileNumber: mobileNumber.current.value});
+                isAuthenticated(data._id,data.name,data.email,data.token,data.refreshToken);
                 navigate('/home');
                 dispatch(updateLoader(false));
                }
