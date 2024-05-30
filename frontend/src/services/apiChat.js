@@ -30,7 +30,7 @@ export const fetchAllChats = async(token)=>{
 export const fetchChatName = (users,userId)=>{
     let chatName;
     users?.map((u)=>{
-        if(u._id != userId)chatName= u.name;
+        if(u._id !== userId)chatName= u.name;
     });
     return chatName;
 }

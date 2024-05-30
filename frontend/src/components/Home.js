@@ -28,7 +28,7 @@ const Home = () => {
   useEffect(()=>{
     const interval = setInterval(()=>{
       refreshToken();
-    },1080000);
+    },1680000);
     return ()=>{
       clearInterval(interval);
     }
