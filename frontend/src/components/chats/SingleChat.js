@@ -3,13 +3,15 @@ import { ChatState } from '../context/ChatProvider'
 import { LuSendHorizonal } from "react-icons/lu";
 import { fetchAllMessages, sendNewMessage } from '../../services/apiChat';
 import io from "socket.io-client"
+import ENV from '../../envHelper';
 
 
-// const ENDPOINT = "http://localhost:5000";
-const ENDPOINT = "https://mrn1-task.onrender.com";
+const ENDPOINT = ENV;
 var socket, selectChatCompare;
 
 const SingleChat = ({fetchAgain,setFetchAgain}) => {
+console.log(ENDPOINT)
+
     const { user, selectedChat,notifications,setNotifications } = ChatState();
     const message = useRef('');
     const [allMessages, setAllMessages] = useState([]);
