@@ -4,6 +4,7 @@ import { deleteTask } from '../../services/apiTask';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { updateLoader } from '../../utils/userSlice';
+import { updateToaster } from '../../utils/toasterSlice';
 
 const Task = ({ task, index, token, setfetchAllTasks }) => {
   const [date, setdate] = useState();
@@ -34,10 +35,13 @@ const Task = ({ task, index, token, setfetchAllTasks }) => {
     if (deleted) {
       dispatch(updateLoader(false))
       setfetchAllTasks(prev => prev + 1);
+      dispatch(updateToaster({isToaster: true, type:'success',message:'deleted Successfully'}))
+
     }
     else {
       dispatch(updateLoader(false))
-      console.log('need a toaster')
+      dispatch(updateToaster({isToaster: true, type:'alert',message:'err occured while deleting'}))
+
     }
   }
   const EditTask = () => {

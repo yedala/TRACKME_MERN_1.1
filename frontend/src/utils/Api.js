@@ -13,6 +13,7 @@ export const SIGNUP = "users/signup";
 export const ALL_USERS ="/users/all";
 export const FETCH_USER = "/users/";
 export const TOKEN = "users/token";
+export const LOGOUT = "users/logout";
 
 //for tasks
 export const ALLTASKS = "/tasks/all";

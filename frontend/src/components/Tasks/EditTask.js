@@ -4,6 +4,7 @@ import { getTask, updateTask } from '../../services/apiTask';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { updateLoader } from '../../utils/userSlice';
+import { updateToaster } from '../../utils/toasterSlice';
 
 
 
@@ -47,13 +48,15 @@ const EditTask = () => {
     }
     try {
       const updatedTask = await updateTask(token, data.id, payload);
-      if (updateTask) {
+        dispatch(updateToaster({isToaster: true, type:'success',message:'saved succesfully'}))
         navigate('/tasks');
         dispatch(updateLoader(false));
-      }
+      
 
     } catch (err) {
       dispatch(updateLoader(false));
+      console.log(err)
+      dispatch(updateToaster({isToaster: true, type:'alert',message:'err'}))
       navigate('/tasks');
     }
 

@@ -101,6 +101,19 @@ const updateToken = asyncHandler(async(req,res)=>{
        throw new Error(err)
     }
     
+});
+
+const logoutUser = asyncHandler(async(req,res)=>{
+    const userId = req.user._id;
+    const user = User.findById(userId);
+   try{
+    user.refreshToken = null;
+    await user.save();
+    res.json({messsage:'logout succesfully'})
+   }catch(err){
+    throw new Error(err)
+   }
+    
 })
 
-module.exports = { registerUser, authUser, allUsers, fetchUser,updateToken }
+module.exports = { registerUser, authUser, allUsers, fetchUser,updateToken,logoutUser }

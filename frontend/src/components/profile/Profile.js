@@ -4,13 +4,17 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { removeUserData } from '../../utils/userSlice'; 
+import { removeToaster } from '../../utils/toasterSlice';
+import { userLogOut } from '../../services/apiUser';
 
 const Profile = ({ setProfile }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const LogOut = () => {
+    const LogOut = async() => {
+        // const data = await userLogOut();
         dispatch(removeUserData());
+        dispatch(removeToaster());
         navigate('/')
     }
 
@@ -23,7 +27,7 @@ const Profile = ({ setProfile }) => {
                 <Link className='px-2  my-1' to="/tasks">Tasks</Link>
             </div>
             <div className='flex flex-col cursor-pointer'>
-                <Link className='px-2  my-1' to="/account">Update Profile</Link>
+                <Link className='px-2  my-1' to="/account">Profile</Link>
                 <p className='px-2  my-1' onClick={LogOut}>Log Out</p>
             </div>
         </div>

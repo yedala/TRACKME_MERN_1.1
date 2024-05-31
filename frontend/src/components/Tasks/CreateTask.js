@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { createTask } from '../../services/apiTask';
 import { useDispatch } from 'react-redux';
 import { updateLoader } from '../../utils/userSlice';
+import { updateToaster } from '../../utils/toasterSlice';
 
 
 const CreateTask = ({ setCreateTask, setfetchAllTasks }) => {
@@ -30,6 +31,8 @@ const CreateTask = ({ setCreateTask, setfetchAllTasks }) => {
                 setCreateTask(false);
             }
             dispatch(updateLoader(false));
+            dispatch(updateToaster({isToaster: true, type:'success',message:'Created Successfully'}))
+
         }
         catch (err) {
             /// need to add a toaster
