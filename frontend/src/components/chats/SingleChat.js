@@ -10,7 +10,6 @@ const ENDPOINT = ENV;
 var socket, selectChatCompare;
 
 const SingleChat = ({fetchAgain,setFetchAgain}) => {
-console.log(ENDPOINT)
 
     const { user, selectedChat,notifications,setNotifications } = ChatState();
     const message = useRef('');
@@ -124,8 +123,8 @@ console.log(ENDPOINT)
     }
 
     return (
-        <div className='flex flex-col h-screen'>
-            <div className='flex justify-center p-2 text-3xl bg-slate-400'>Chat..</div>
+        <div className='flex flex-col h-full'>
+            <div className='flex justify-center p-1 text-xl bg-slate-400'>Chat..</div>
             <div className='flex-grow  bg-slate-300 overflow-auto' ref={containerRef} style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                 {
                     selectedChat && <>

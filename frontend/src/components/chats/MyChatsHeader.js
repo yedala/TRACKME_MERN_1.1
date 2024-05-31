@@ -55,11 +55,12 @@ const MyChatsHeader = () => {
 
     return (
         <div className='my-1 mx-2 px-2 border-y-2 flex items-center justify-between  relative'>
+             <div className='flex text-lg px-3'>My Chats</div>
             <div className='flex items-center relative'>
                 <input ref={search} onChange={(e) => handleSearch(e)} className='bg-slate-200 p-1 m-2 rounded-md pl-7 ' type="search" placeholder='Search.' />
                 <IoIosSearch className='absolute cursor-pointer h-5 w-5 left-3' />
             </div>
-            {(showUsers && searchData.length > 0) && <div className='absolute bg-white p-3 w-52  rounded-md left-8 top-12'>
+            {(showUsers && searchData.length > 0) && <div className='absolute bg-white p-3 w-52  rounded-md left-36 top-12'>
                 <div onClick={close} className='flex justify-end'><IoClose /></div>
                 {searchData?.map((eachUser) => {
                     return (

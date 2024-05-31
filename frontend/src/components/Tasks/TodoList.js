@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Task from './Task';
 import CreateTask from './CreateTask';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from '../../services/apiTask';
+import { updateLoader } from '../../utils/userSlice';
 
 
 const TodoList = () => {
@@ -11,6 +12,8 @@ const TodoList = () => {
   const token = useSelector(store => store?.user?.userData?.token);
   const [allTasks, setallTasks] = useState();
   const [prevFilter, setPrevFilter] = useState('ALL');
+  const dispatch = useDispatch()
+
 
 
   useEffect(() => {
@@ -18,6 +21,7 @@ const TodoList = () => {
   }, [fetchAllTasks]);
 
   const CreateATask = () => {
+    
     try {
       setCreateTask(true);
 
@@ -28,10 +32,13 @@ const TodoList = () => {
   }
 
   const fetchAllTasksTable = async (filter) => {
+    dispatch(updateLoader(true));
     try {
       setallTasks(await fetchData(token, filter));
+      dispatch(updateLoader(false))
 
     } catch (err) {
+      dispatch(updateLoader(false))
       console.log('need a toaster')
     }
   }

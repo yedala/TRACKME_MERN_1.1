@@ -30,8 +30,8 @@ const MyChats = ({ fetchAgain }) => {
         setSelectedChat(eachChat);
     }
     return (
-        <div className='flex flex-col h-full'>
-            <div className='flex justify-center text-xl bg'>My Chats</div>
+        <div className='flex flex-col h-5/6'>
+           
             <div className='flex-grow ' style={{ overflow: 'auto', scrollbarWidth: 'none', msOverflowStyle: 'none' }} >
                 {(chats.length > 0) &&
                     <div>

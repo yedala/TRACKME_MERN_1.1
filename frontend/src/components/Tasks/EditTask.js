@@ -22,20 +22,21 @@ const EditTask = () => {
 
 
   const fetchTaskData = async () => {
+    dispatch(updateLoader(true));
     const getData = await getTask(data.token, data.id);
     if (getData) {
       setTask(getData?.data);
+      dispatch(updateLoader(false));
     }
-    dispatch(updateLoader(false));
+   
   }
 
   useEffect(() => {
-    dispatch(updateLoader(true));
     fetchTaskData();
 
   }, [data])
   const handleCancel = () => {
-    navigate('/home');
+    navigate('/tasks');
   }
   const handleSave = async () => {
     dispatch(updateLoader(true));
@@ -47,18 +48,18 @@ const EditTask = () => {
     try {
       const updatedTask = await updateTask(token, data.id, payload);
       if (updateTask) {
-        navigate('/home');
+        navigate('/tasks');
         dispatch(updateLoader(false));
       }
 
     } catch (err) {
       dispatch(updateLoader(false));
-      navigate('/home');
+      navigate('/tasks');
     }
 
   }
   return (
-    <div className='  w-screen h-screen absolute bg-blue-100 '>
+    <div className='  w-screen h-screen  bg-blue-100 '>
       <h1 className=' text-3xl flex justify-center p-3'>Edit Task</h1>
 
       <div className='p-9 flex flex-col justify-center items-center'>

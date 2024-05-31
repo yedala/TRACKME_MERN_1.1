@@ -8,10 +8,10 @@ const ChatsConnect = () => {
   const [fetchAgain,setFetchAgain] = useState(false);
   return (
     <ChatProvider>
-      <div className='flex w-screen h-[100vh] overflow-hidden' >
-        <div className='w-1/3 border-x-2 bg-slate-300'>
+      <div className='flex w-screen h-full ' >
+        <div className='w-1/3 border-x-2 bg-slate-300 '>
           <MyChatsHeader/>
-          <MyChats fetchAgain={fetchAgain}/>
+          <MyChats  fetchAgain={fetchAgain}/>
         </div>
         <div className='w-2/3'>
           <SingleChat fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />

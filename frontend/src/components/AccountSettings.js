@@ -33,7 +33,6 @@ const AccountSettings = () => {
   }
   return (
     <div className='h-screen'>
-      <Header/>
       <div className='p-2 ' >
         <div className='flex justify-center m-1 p-1 text-lg'>Update Profile</div>
         <div className='flex w-full h-full'>
