@@ -9,9 +9,10 @@ const fetchConfig = (token)=>{
         }
      }
 }
-export  const fetchData =async (token, status)=>{
+export  const fetchData =async (token, filter)=>{
+    console.log(filter);
     let config = fetchConfig(token);
-    const tasks = await axios.get(`${ALLTASKS}?status=${status}`,config);
+    const tasks = await axios.get(`${ALLTASKS}?status=${filter.status}&search=${filter.search}&pageNo=${filter.pageNo}`,config);
     return tasks;
     
 };
